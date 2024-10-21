@@ -26,8 +26,15 @@ namespace SMS_Frontend
             // Correct username and password, let's login:
             this.Hide();
             MainForm mainForm = new MainForm();
-            mainForm.Owner = this;
-            mainForm.Show();
+            mainForm.ShowDialog();
+            if (mainForm.DialogResult == DialogResult.Continue)
+            {
+                txtUsername.Text = "";
+                txtPassword.Text = "";
+                this.Show();
+                mainForm.Dispose();
+            }
+            else Application.Exit();
         }
 
         private void clearErrorText(object sender, EventArgs e)

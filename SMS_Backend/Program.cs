@@ -1,13 +1,3 @@
-﻿namespace SMS_Backend
-{
-    internal static class Program
-    {
-        /// <summary>
-        /// The main class for the server.
-        /// </summary>
-        public static void Main(String[] args)
-        {
-            Console.WriteLine("Hello world!");
-        }
-    }
-}
+﻿// See https://aka.ms/new-console-template for more information
+
+Console.WriteLine("Hello, World!");

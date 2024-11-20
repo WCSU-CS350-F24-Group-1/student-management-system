@@ -16,8 +16,8 @@ namespace SMS_Backend
         public static void Main(string[] args)
         {
             // Create and test database connection
-            // var dbConnection = new Services.DatabaseConnection();
-            // dbConnection.TestConnection();
+            var dbConnection = new Services.DatabaseConnection();
+            dbConnection.TestConnection();
             
             // Get server connection information
             // This will always be hosted on the local machine

@@ -22,21 +22,19 @@ namespace SMS_Backend
             // Get server connection information
             // This will always be hosted on the local machine
             var ipAddress = Dns.GetHostEntry(Dns.GetHostName()).AddressList[0];
-            IPEndPoint endPoint = new IPEndPoint(ipAddress, 9000);
             
             // Create a socket listener
-            using (Socket listener = new Socket(endPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp))
+            using (TcpListener listener = new TcpListener(ipAddress, 9000))
             {
-                listener.Bind(endPoint);
-                listener.Listen(10);  // Start listening
+                listener.Start();
                 Console.WriteLine("Server is running...");
 
                 while (true)
                 {
-                    var connection = listener.Accept();  // We would want to offload this into a class
+                    var connection = listener.AcceptTcpClient();  // We would want to offload this into a class
                     Console.WriteLine("Found connection");
                     // This is where the message will be received and processed
-                    using (var netStream = new NetworkStream(connection))
+                    using (var netStream = connection.GetStream())
                     {
                         var reader = new StreamReader(netStream);
                         var writer = new StreamWriter(netStream);

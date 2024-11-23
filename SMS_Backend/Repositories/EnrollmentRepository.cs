@@ -7,25 +7,23 @@ namespace SMS_Backend.Repositories
 {
     public class EnrollmentRepository
     {
-        private readonly string _connectionString;
+        private readonly NpgsqlConnection _connection;
 
-        public EnrollmentRepository(string connectionString)
+        public EnrollmentRepository(NpgsqlConnection connection)
         {
-            _connectionString = connectionString;
+            _connection = connection;
         }
 
         public string AddEnrollment(Guid studentId, Guid courseId)
         {
             try
             {
-                using (var connection = new NpgsqlConnection(_connectionString))
                 {
-                    connection.Open();
                     var query = @"
                         INSERT INTO Enrollment (student_id, course_id)
                         VALUES (@StudentId, @CourseId)";
 
-                    using (var command = new NpgsqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, _connection))
                     {
                         command.Parameters.AddWithValue("@StudentId", studentId);
                         command.Parameters.AddWithValue("@CourseId", courseId);
@@ -44,14 +42,12 @@ namespace SMS_Backend.Repositories
         {
             try
             {
-                using (var connection = new NpgsqlConnection(_connectionString))
                 {
-                    connection.Open();
                     var query = @"
                         DELETE FROM Enrollment
                         WHERE student_id = @StudentId AND course_id = @CourseId";
 
-                    using (var command = new NpgsqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, _connection))
                     {
                         command.Parameters.AddWithValue("@StudentId", studentId);
                         command.Parameters.AddWithValue("@CourseId", courseId);
@@ -72,12 +68,10 @@ namespace SMS_Backend.Repositories
             var courses = new List<Guid>();
             try
             {
-                using (var connection = new NpgsqlConnection(_connectionString))
                 {
-                    connection.Open();
                     var query = "SELECT course_id FROM Enrollment WHERE student_id = @StudentId";
 
-                    using (var command = new NpgsqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, _connection))
                     {
                         command.Parameters.AddWithValue("@StudentId", studentId);
                         using (var reader = command.ExecuteReader())
@@ -102,12 +96,10 @@ namespace SMS_Backend.Repositories
             var students = new List<Guid>();
             try
             {
-                using (var connection = new NpgsqlConnection(_connectionString))
                 {
-                    connection.Open();
                     var query = "SELECT student_id FROM Enrollment WHERE course_id = @CourseId";
 
-                    using (var command = new NpgsqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, _connection))
                     {
                         command.Parameters.AddWithValue("@CourseId", courseId);
                         using (var reader = command.ExecuteReader())

@@ -7,25 +7,23 @@ namespace SMS_Backend.Repositories
 {
     public class UserRepository
     {
-        private readonly string _connectionString;
+        private readonly NpgsqlConnection _connection;
 
-        public UserRepository(string connectionString)
+        public UserRepository(NpgsqlConnection connection)
         {
-            _connectionString = connectionString;
+            _connection = connection;
         }
 
         public string AddUser(User user)
         {
             try
             {
-                using (var connection = new NpgsqlConnection(_connectionString))
                 {
-                    connection.Open();
                     var query = @"
                         INSERT INTO Users (user_id, username, password, role, department, office_location)
                         VALUES (@UserId, @Username, @Password, @Role, @Department, @OfficeLocation)";
 
-                    using (var command = new NpgsqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, _connection))
                     {
                         command.Parameters.AddWithValue("@UserId", user.UserId);
                         command.Parameters.AddWithValue("@Username", user.Username);
@@ -48,12 +46,10 @@ namespace SMS_Backend.Repositories
         {
             try
             {
-                using (var connection = new NpgsqlConnection(_connectionString))
                 {
-                    connection.Open();
                     var query = "SELECT * FROM Users WHERE user_id = @UserId";
 
-                    using (var command = new NpgsqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, _connection))
                     {
                         command.Parameters.AddWithValue("@UserId", userId);
                         using (var reader = command.ExecuteReader())
@@ -86,12 +82,10 @@ namespace SMS_Backend.Repositories
             var users = new List<User>();
             try
             {
-                using (var connection = new NpgsqlConnection(_connectionString))
                 {
-                    connection.Open();
                     var query = "SELECT * FROM Users";
 
-                    using (var command = new NpgsqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, _connection))
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -120,12 +114,10 @@ namespace SMS_Backend.Repositories
         {
             try
             {
-                using (var connection = new NpgsqlConnection(_connectionString))
                 {
-                    connection.Open();
                     var query = "DELETE FROM Users WHERE user_id = @UserId";
 
-                    using (var command = new NpgsqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, _connection))
                     {
                         command.Parameters.AddWithValue("@UserId", userId);
                         var rowsAffected = command.ExecuteNonQuery();
@@ -144,12 +136,10 @@ namespace SMS_Backend.Repositories
         {
             try
             {
-                using (var connection = new NpgsqlConnection(_connectionString))
                 {
-                    connection.Open();
                     var query = "SELECT * FROM Users WHERE username = @Username AND password = @Password";
 
-                    using (var command = new NpgsqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, _connection))
                     {
                         command.Parameters.AddWithValue("@Username", username);
                         command.Parameters.AddWithValue("@Password", password);

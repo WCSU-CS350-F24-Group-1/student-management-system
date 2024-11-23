@@ -7,25 +7,23 @@ namespace SMS_Backend.Repositories
 {
     public class CourseRepository
     {
-        private readonly string _connectionString;
+        private readonly NpgsqlConnection _connection;
 
-        public CourseRepository(string connectionString)
+        public CourseRepository(NpgsqlConnection connection)
         {
-            _connectionString = connectionString;
+            _connection = connection;
         }
 
         public string AddCourse(Course course)
         {
             try
             {
-                using (var connection = new NpgsqlConnection(_connectionString))
                 {
-                    connection.Open();
                     var query = @"
                         INSERT INTO Courses (course_id, course_name, credit_hours, professor_id)
                         VALUES (@CourseId, @CourseName, @CreditHours, @ProfessorId)";
 
-                    using (var command = new NpgsqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, _connection))
                     {
                         command.Parameters.AddWithValue("@CourseId", course.CourseId);
                         command.Parameters.AddWithValue("@CourseName", course.CourseName);
@@ -46,12 +44,10 @@ namespace SMS_Backend.Repositories
         {
             try
             {
-                using (var connection = new NpgsqlConnection(_connectionString))
                 {
-                    connection.Open();
                     var query = "SELECT * FROM Courses WHERE course_id = @CourseId";
 
-                    using (var command = new NpgsqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, _connection))
                     {
                         command.Parameters.AddWithValue("@CourseId", courseId);
                         using (var reader = command.ExecuteReader())
@@ -82,12 +78,10 @@ namespace SMS_Backend.Repositories
             var courses = new List<Course>();
             try
             {
-                using (var connection = new NpgsqlConnection(_connectionString))
                 {
-                    connection.Open();
                     var query = "SELECT * FROM Courses";
 
-                    using (var command = new NpgsqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, _connection))
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -114,12 +108,10 @@ namespace SMS_Backend.Repositories
         {
             try
             {
-                using (var connection = new NpgsqlConnection(_connectionString))
                 {
-                    connection.Open();
                     var query = "DELETE FROM Courses WHERE course_id = @CourseId";
 
-                    using (var command = new NpgsqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, _connection))
                     {
                         command.Parameters.AddWithValue("@CourseId", courseId);
                         var rowsAffected = command.ExecuteNonQuery();

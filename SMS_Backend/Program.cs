@@ -1,17 +1,22 @@
 ﻿// See https://aka.ms/new-console-template for more information
-
 using System;
 using System.IO;
 using SMS_Backend.Models;
 using SMS_Backend.Repositories;
+using System.Net;
 using System.Net.Sockets;
 
 namespace SMS_Backend
 {
     public class Program
     {
+        /// <summary>
+        /// Entry point for the server program.
+        /// Handles initialization of database connection and server connection listener.
+        /// </summary>
         public static void Main(string[] args)
         {
+            // Create and test database connection
             var dbConnection = new Services.DatabaseConnection();
              dbConnection.TestConnection();
 
@@ -41,6 +46,7 @@ namespace SMS_Backend
             {
                 Console.WriteLine($"Error connecting to server: {ex.Message}");
             }
+
         }
     }
 }

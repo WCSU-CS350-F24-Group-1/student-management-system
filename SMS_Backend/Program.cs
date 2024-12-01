@@ -7,13 +7,20 @@ using SMS_Backend.Repositories;
 using System.Net.Sockets;
 using System.Text.Json;
 
+
 namespace SMS_Backend
 {
     public class Program
     {
+        /// <summary>
+        /// Entry point for the server program.
+        /// Handles initialization of database connection and server connection listener.
+        /// </summary>
         public static void Main(string[] args)
         {
+            // Create and test database connection
             var dbConnection = new Services.DatabaseConnection();
+
              dbConnection.TestConnection();
 
             using (var connection = dbConnection.GetConnection())
@@ -59,6 +66,7 @@ namespace SMS_Backend
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
+
         }
     }
 }

@@ -89,7 +89,7 @@ namespace SMS_Backend
                     client.Close();
                     Console.WriteLine($"Client {clientId} disconnected.");
 
-                    // Remove the client from the authenticated users list (if applicable)
+                    // Remove the client from the authenticated users list 
                     _authenticatedUsers.Remove(clientId);
                 }
             }
@@ -130,7 +130,7 @@ namespace SMS_Backend
                 break;
 
             case "DeleteUser":
-                var deleteUserId = Guid.Parse(requestObj.Data); // Assuming `Data` contains the user ID
+                var deleteUserId = Guid.Parse(requestObj.Data); 
                 command = new DeleteUserCommand(_userRepository, deleteUserId);
                 break;
 

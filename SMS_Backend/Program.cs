@@ -5,6 +5,7 @@ using System.IO;
 using SMS_Backend.Models;
 using SMS_Backend.Repositories;
 using System.Net.Sockets;
+using System.Text.Json;
 
 namespace SMS_Backend
 {
@@ -29,8 +30,25 @@ namespace SMS_Backend
                 using (var reader = new StreamReader(stream))
                 using (var writer = new StreamWriter(stream) { AutoFlush = true })
                 {
-                    // Send a test request
-                    writer.WriteLine("ping");
+                    // Example: Add a student
+                    var studentRequest = new
+                    {
+                        Command = "AddStudent",
+                        Data = JsonSerializer.Serialize(new
+                        {
+                            StudentId = Guid.NewGuid(),
+                            Name = "John Doe",
+                            DateOfBirth = "2000-01-01",
+                            Email = "johndoe@example.com",
+                            Phone = "555-1234",
+                            GPA = 3.8,
+                            Credits = 120,
+                            Major = "Computer Science"
+                        })
+                    };
+
+                    var requestJson = JsonSerializer.Serialize(studentRequest);
+                    writer.WriteLine(requestJson);
 
                     // Read the server response
                     var response = reader.ReadLine();
@@ -39,7 +57,7 @@ namespace SMS_Backend
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error connecting to server: {ex.Message}");
+                Console.WriteLine($"Error: {ex.Message}");
             }
         }
     }

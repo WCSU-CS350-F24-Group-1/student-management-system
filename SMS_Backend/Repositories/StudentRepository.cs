@@ -137,5 +137,88 @@ namespace SMS_Backend.Repositories
                 return $"Error deleting student: {ex.Message}";
             }
         }
+
+        public string UpdateStudent(Student student)
+        {
+            try
+            {
+                var query = @"
+                    UPDATE Students
+                    SET 
+                        Name = @Name,
+                        DateOfBirth = @DateOfBirth,
+                        Email = @Email,
+                        Phone = @Phone,
+                        GPA = @GPA,
+                        Credits = @Credits,
+                        Major = @Major
+                    WHERE StudentId = @StudentId";
+
+                using (var command = new NpgsqlCommand(query, _connection))
+                {
+                    command.Parameters.AddWithValue("@StudentId", student.StudentId);
+                    command.Parameters.AddWithValue("@Name", student.Name);
+                    command.Parameters.AddWithValue("@DateOfBirth", student.DateOfBirth);
+                    command.Parameters.AddWithValue("@Email", student.Email);
+                    command.Parameters.AddWithValue("@Phone", student.Phone);
+                    command.Parameters.AddWithValue("@GPA", student.GPA);
+                    command.Parameters.AddWithValue("@Credits", student.Credits);
+                    command.Parameters.AddWithValue("@Major", student.Major);
+
+                    var rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0 ? "Student updated successfully." : "No student found with the provided ID.";
+                }
+            }
+            catch (Exception ex)
+            {
+                return $"Error updating student: {ex.Message}";
+            }
+        }
+
+
+        public List<Student> SearchStudents(string searchQuery)
+        {
+            var students = new List<Student>();
+
+            try
+            {
+                var query = @"
+                    SELECT StudentId, Name, DateOfBirth, Email, Phone, GPA, Credits, Major
+                    FROM Students
+                    WHERE Name ILIKE @SearchQuery OR CAST(StudentId AS TEXT) ILIKE @SearchQuery";
+
+                using (var command = new NpgsqlCommand(query, _connection))
+                {
+                    // Add the parameter for the search query
+                    command.Parameters.AddWithValue("@SearchQuery", $"%{searchQuery}%");
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Create and add a student object to the list
+                            students.Add(new Student
+                            {
+                                StudentId = reader.GetGuid(reader.GetOrdinal("StudentId")),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                DateOfBirth = reader.GetDateTime(reader.GetOrdinal("DateOfBirth")),
+                                Email = reader.GetString(reader.GetOrdinal("Email")),
+                                Phone = reader.GetString(reader.GetOrdinal("Phone")),
+                                GPA = reader.GetDecimal(reader.GetOrdinal("GPA")),
+                                Credits = reader.GetInt32(reader.GetOrdinal("Credits")),
+                                Major = reader.GetString(reader.GetOrdinal("Major"))
+                            });
+                        }
+                    }
+                }
+                return students;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error searching for students: {ex.Message}");
+                return students;
+            }
+        }
+
     }
 }

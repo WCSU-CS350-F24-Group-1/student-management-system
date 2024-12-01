@@ -125,5 +125,44 @@ namespace SMS_Backend.Repositories
                 return $"Error deleting course: {ex.Message}";
             }
         }
+
+        public List<Course> SearchCourses(string searchQuery)
+        {
+            var courses = new List<Course>();
+
+            try
+            {
+                var query = @"
+                    SELECT course_id, course_name, credit_hours, professor_id
+                    FROM courses
+                    WHERE LOWER(course_name) LIKE @SearchQuery";
+
+                using (var command = new NpgsqlCommand(query, _connection))
+                {
+                    // Add parameter for case-insensitive search
+                    command.Parameters.AddWithValue("@SearchQuery", $"%{searchQuery.ToLower()}%");
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            courses.Add(new Course
+                            {
+                                CourseId = reader.GetGuid(0),
+                                CourseName = reader.GetString(1),
+                                CreditHours = reader.GetInt32(2),
+                                ProfessorId = reader.GetGuid(3)
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error searching courses: {ex.Message}");
+            }
+
+            return courses;
+        }
     }
 }

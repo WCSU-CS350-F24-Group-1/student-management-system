@@ -1,13 +1,16 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-// Console.WriteLine("Hello, World!");
-
-using System.Net;
+using System;
+using System.IO;
+using SMS_Backend.Models;
+using SMS_Backend.Repositories;
 using System.Net.Sockets;
+using System.Text.Json;
+
 
 namespace SMS_Backend
 {
-    internal static class Program
+    public class Program
     {
         /// <summary>
         /// Entry point for the server program.
@@ -17,42 +20,53 @@ namespace SMS_Backend
         {
             // Create and test database connection
             var dbConnection = new Services.DatabaseConnection();
-            dbConnection.TestConnection();
-            
-            // Get server connection information
-            // This will always be hosted on the local machine
-            var ipAddress = Dns.GetHostEntry(Dns.GetHostName()).AddressList[0];
-            
-            // Create a socket listener
-            using (TcpListener listener = new TcpListener(ipAddress, 9000))
-            {
-                listener.Start();
-                Console.WriteLine("Server is running...");
 
-                while (true)
+             dbConnection.TestConnection();
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                // Start the TCP server
+                var server = new TcpServer(9000, connection);
+                server.Start();
+            }
+
+            try
+            {
+                using (var client = new TcpClient("localhost", 9000))
+                using (var stream = client.GetStream())
+                using (var reader = new StreamReader(stream))
+                using (var writer = new StreamWriter(stream) { AutoFlush = true })
                 {
-                    var connection = listener.AcceptTcpClient();  // We would want to offload this into a class
-                    Console.WriteLine("Found connection");
-                    // This is where the message will be received and processed
-                    using (var netStream = connection.GetStream())
+                    // Example: Add a student
+                    var studentRequest = new
                     {
-                        var reader = new StreamReader(netStream);
-                        var writer = new StreamWriter(netStream);
-                        
-                        // Read something
-                        var testString = reader.ReadToEnd();
-                        
-                        // Write something
-                        writer.WriteLine("Hello from the server!");
-                    }
-                    // After this point, our stream is gone
-                    // Close the connection
-                    connection.Close();
-                    
-                    // Break the loop and end program
-                    break;
+                        Command = "AddStudent",
+                        Data = JsonSerializer.Serialize(new
+                        {
+                            StudentId = Guid.NewGuid(),
+                            Name = "John Doe",
+                            DateOfBirth = "2000-01-01",
+                            Email = "johndoe@example.com",
+                            Phone = "555-1234",
+                            GPA = 3.8,
+                            Credits = 120,
+                            Major = "Computer Science"
+                        })
+                    };
+
+                    var requestJson = JsonSerializer.Serialize(studentRequest);
+                    writer.WriteLine(requestJson);
+
+                    // Read the server response
+                    var response = reader.ReadLine();
+                    Console.WriteLine($"Server Response: {response}");
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
         }
     }
 }

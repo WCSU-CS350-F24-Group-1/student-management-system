@@ -28,110 +28,308 @@
         /// </summary>
         private void InitializeComponent()
         {
+            TableLayoutPanel tblStudents;
+            Panel pnlStudentSection;
+            Panel pnlStudents;
+            Panel pnlClasses;
+            TableLayoutPanel tblClasses;
+            Panel pnlClassSection;
+            Panel pnlBottom;
+            TableLayoutPanel tableLayoutPanel1;
+            btnEditStudent = new Button();
+            btnStudentResult = new Label();
             txtStudentQuery = new TextBox();
             btnStudentSearch = new Button();
+            btnAddStudent = new Button();
+            btnDelStudent = new Button();
+            lstStudentResults = new ListBox();
+            lstClassResults = new ListBox();
             txtClassQuery = new TextBox();
             btnClassSearch = new Button();
+            btnAddClass = new Button();
+            btnDelClass = new Button();
+            btnEditClass = new Button();
+            lblClassResult = new Label();
             btnLogout = new Button();
             prgProcessingIndicator = new ProgressBar();
-            btnAddStudent = new Button();
-            btnAddClass = new Button();
             btnViewUsers = new Button();
-            splitContainer = new SplitContainer();
-            lblStudentResult = new Label();
-            lstStudentResults = new ListBox();
-            grpStudentsProperties = new GroupBox();
-            pnlStudentInfo = new Panel();
-            numStudentCredits = new NumericUpDown();
-            lblStudentCredits = new Label();
-            numStudentGPA = new NumericUpDown();
-            txtStudentGPA = new Label();
-            txtStudentPhone = new MaskedTextBox();
-            lblStudentPhone = new Label();
-            txtStudentEmail = new TextBox();
-            lblStudentEmail = new Label();
-            txtStudentMajor = new TextBox();
-            lblStudentMajor = new Label();
-            dteStudentDOB = new DateTimePicker();
-            lblStudentDOB = new Label();
-            txtStudentName = new TextBox();
-            lblStudentName = new Label();
-            numStudentID = new NumericUpDown();
-            lblStudentID = new Label();
-            lblStudentEnrollment = new Label();
-            clbStudentEnrollment = new CheckedListBox();
-            btnDelStudent = new Button();
-            lblClassResult = new Label();
-            lstClassResults = new ListBox();
-            grpClassProperties = new GroupBox();
-            lblClassName = new Label();
-            txtClassName = new TextBox();
-            lblClassCredits = new Label();
-            numClassCredits = new NumericUpDown();
-            lblClassProf = new Label();
-            txtClassProf = new TextBox();
-            btnDelClass = new Button();
-            ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
-            splitContainer.Panel1.SuspendLayout();
-            splitContainer.Panel2.SuspendLayout();
-            splitContainer.SuspendLayout();
-            grpStudentsProperties.SuspendLayout();
-            pnlStudentInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numStudentCredits).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numStudentGPA).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numStudentID).BeginInit();
-            grpClassProperties.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numClassCredits).BeginInit();
+            tblStudents = new TableLayoutPanel();
+            pnlStudentSection = new Panel();
+            pnlStudents = new Panel();
+            pnlClasses = new Panel();
+            tblClasses = new TableLayoutPanel();
+            pnlClassSection = new Panel();
+            pnlBottom = new Panel();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            tblStudents.SuspendLayout();
+            pnlStudentSection.SuspendLayout();
+            pnlStudents.SuspendLayout();
+            pnlClasses.SuspendLayout();
+            tblClasses.SuspendLayout();
+            pnlClassSection.SuspendLayout();
+            pnlBottom.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
+            // 
+            // tblStudents
+            // 
+            tblStudents.AutoSize = true;
+            tblStudents.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            tblStudents.ColumnCount = 3;
+            tblStudents.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tblStudents.ColumnStyles.Add(new ColumnStyle());
+            tblStudents.ColumnStyles.Add(new ColumnStyle());
+            tblStudents.Controls.Add(pnlStudentSection, 0, 1);
+            tblStudents.Controls.Add(txtStudentQuery, 0, 0);
+            tblStudents.Controls.Add(btnStudentSearch, 1, 0);
+            tblStudents.Controls.Add(btnAddStudent, 1, 1);
+            tblStudents.Controls.Add(btnDelStudent, 2, 1);
+            tblStudents.Dock = DockStyle.Top;
+            tblStudents.Location = new Point(0, 0);
+            tblStudents.Name = "tblStudents";
+            tblStudents.RowCount = 2;
+            tblStudents.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tblStudents.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tblStudents.Size = new Size(463, 68);
+            tblStudents.TabIndex = 13;
+            // 
+            // pnlStudentSection
+            // 
+            pnlStudentSection.AutoSize = true;
+            pnlStudentSection.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            pnlStudentSection.Controls.Add(btnEditStudent);
+            pnlStudentSection.Controls.Add(btnStudentResult);
+            pnlStudentSection.Dock = DockStyle.Fill;
+            pnlStudentSection.Location = new Point(3, 37);
+            pnlStudentSection.Name = "pnlStudentSection";
+            pnlStudentSection.Size = new Size(247, 28);
+            pnlStudentSection.TabIndex = 15;
+            // 
+            // btnEditStudent
+            // 
+            btnEditStudent.Dock = DockStyle.Fill;
+            btnEditStudent.Location = new Point(82, 0);
+            btnEditStudent.Name = "btnEditStudent";
+            btnEditStudent.Size = new Size(165, 28);
+            btnEditStudent.TabIndex = 13;
+            btnEditStudent.Text = "Student Info...";
+            btnEditStudent.UseVisualStyleBackColor = true;
+            // 
+            // btnStudentResult
+            // 
+            btnStudentResult.AutoSize = true;
+            btnStudentResult.Dock = DockStyle.Left;
+            btnStudentResult.Location = new Point(0, 0);
+            btnStudentResult.Margin = new Padding(3, 9, 3, 0);
+            btnStudentResult.Name = "btnStudentResult";
+            btnStudentResult.Size = new Size(82, 15);
+            btnStudentResult.TabIndex = 11;
+            btnStudentResult.Text = "Search Results";
             // 
             // txtStudentQuery
             // 
-            txtStudentQuery.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtStudentQuery.Location = new Point(-1, -1);
-            txtStudentQuery.Margin = new Padding(0, 0, 3, 3);
+            txtStudentQuery.Dock = DockStyle.Fill;
+            txtStudentQuery.Location = new Point(3, 5);
+            txtStudentQuery.Margin = new Padding(3, 5, 3, 3);
             txtStudentQuery.Name = "txtStudentQuery";
             txtStudentQuery.PlaceholderText = "Search for a student's name or ID...";
-            txtStudentQuery.Size = new Size(250, 23);
+            txtStudentQuery.Size = new Size(247, 23);
             txtStudentQuery.TabIndex = 1;
             // 
             // btnStudentSearch
             // 
-            btnStudentSearch.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnStudentSearch.Location = new Point(255, -2);
-            btnStudentSearch.Margin = new Padding(3, 0, 0, 3);
+            tblStudents.SetColumnSpan(btnStudentSearch, 2);
+            btnStudentSearch.Dock = DockStyle.Fill;
+            btnStudentSearch.Location = new Point(256, 3);
             btnStudentSearch.Name = "btnStudentSearch";
-            btnStudentSearch.Size = new Size(192, 25);
+            btnStudentSearch.Size = new Size(204, 28);
             btnStudentSearch.TabIndex = 0;
             btnStudentSearch.Text = "Student Search";
             btnStudentSearch.UseVisualStyleBackColor = true;
             // 
+            // btnAddStudent
+            // 
+            btnAddStudent.Dock = DockStyle.Fill;
+            btnAddStudent.Location = new Point(256, 37);
+            btnAddStudent.Name = "btnAddStudent";
+            btnAddStudent.Size = new Size(81, 28);
+            btnAddStudent.TabIndex = 3;
+            btnAddStudent.Text = "Add Student";
+            btnAddStudent.UseVisualStyleBackColor = true;
+            // 
+            // btnDelStudent
+            // 
+            btnDelStudent.Dock = DockStyle.Fill;
+            btnDelStudent.Location = new Point(343, 37);
+            btnDelStudent.Name = "btnDelStudent";
+            btnDelStudent.Size = new Size(117, 28);
+            btnDelStudent.TabIndex = 12;
+            btnDelStudent.Text = "Remove Selected";
+            btnDelStudent.UseVisualStyleBackColor = true;
+            // 
+            // pnlStudents
+            // 
+            pnlStudents.Controls.Add(lstStudentResults);
+            pnlStudents.Controls.Add(tblStudents);
+            pnlStudents.Dock = DockStyle.Fill;
+            pnlStudents.Location = new Point(6, 6);
+            pnlStudents.Name = "pnlStudents";
+            pnlStudents.Size = new Size(463, 218);
+            pnlStudents.TabIndex = 13;
+            // 
+            // lstStudentResults
+            // 
+            lstStudentResults.Dock = DockStyle.Fill;
+            lstStudentResults.FormattingEnabled = true;
+            lstStudentResults.HorizontalScrollbar = true;
+            lstStudentResults.IntegralHeight = false;
+            lstStudentResults.ItemHeight = 15;
+            lstStudentResults.Items.AddRange(new object[] { "Daniel Coffman", "Jeff Bezos", "Joe Biden", "Ronan Banton" });
+            lstStudentResults.Location = new Point(0, 68);
+            lstStudentResults.Name = "lstStudentResults";
+            lstStudentResults.SelectionMode = SelectionMode.MultiExtended;
+            lstStudentResults.Size = new Size(463, 150);
+            lstStudentResults.TabIndex = 10;
+            // 
+            // pnlClasses
+            // 
+            pnlClasses.Controls.Add(lstClassResults);
+            pnlClasses.Controls.Add(tblClasses);
+            pnlClasses.Dock = DockStyle.Fill;
+            pnlClasses.Location = new Point(475, 6);
+            pnlClasses.Name = "pnlClasses";
+            pnlClasses.Size = new Size(463, 218);
+            pnlClasses.TabIndex = 14;
+            // 
+            // lstClassResults
+            // 
+            lstClassResults.Dock = DockStyle.Fill;
+            lstClassResults.FormattingEnabled = true;
+            lstClassResults.HorizontalScrollbar = true;
+            lstClassResults.IntegralHeight = false;
+            lstClassResults.ItemHeight = 15;
+            lstClassResults.Items.AddRange(new object[] { "CS 215", "CS 221", "CS 315", "CS 444" });
+            lstClassResults.Location = new Point(0, 68);
+            lstClassResults.Name = "lstClassResults";
+            lstClassResults.Size = new Size(463, 150);
+            lstClassResults.TabIndex = 12;
+            // 
+            // tblClasses
+            // 
+            tblClasses.AutoSize = true;
+            tblClasses.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            tblClasses.ColumnCount = 3;
+            tblClasses.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tblClasses.ColumnStyles.Add(new ColumnStyle());
+            tblClasses.ColumnStyles.Add(new ColumnStyle());
+            tblClasses.Controls.Add(txtClassQuery, 0, 0);
+            tblClasses.Controls.Add(btnClassSearch, 1, 0);
+            tblClasses.Controls.Add(btnAddClass, 1, 1);
+            tblClasses.Controls.Add(btnDelClass, 2, 1);
+            tblClasses.Controls.Add(pnlClassSection, 0, 1);
+            tblClasses.Dock = DockStyle.Top;
+            tblClasses.Location = new Point(0, 0);
+            tblClasses.Name = "tblClasses";
+            tblClasses.RowCount = 2;
+            tblClasses.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tblClasses.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tblClasses.Size = new Size(463, 68);
+            tblClasses.TabIndex = 14;
+            // 
             // txtClassQuery
             // 
-            txtClassQuery.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtClassQuery.Font = new Font("Segoe UI", 9F);
-            txtClassQuery.Location = new Point(-1, -1);
-            txtClassQuery.Margin = new Padding(0, 0, 3, 3);
+            txtClassQuery.Dock = DockStyle.Fill;
+            txtClassQuery.Location = new Point(3, 5);
+            txtClassQuery.Margin = new Padding(3, 5, 3, 3);
             txtClassQuery.Name = "txtClassQuery";
-            txtClassQuery.PlaceholderText = "Search for a class...";
-            txtClassQuery.Size = new Size(252, 23);
-            txtClassQuery.TabIndex = 2;
+            txtClassQuery.PlaceholderText = "Search for a student's name or ID...";
+            txtClassQuery.Size = new Size(247, 23);
+            txtClassQuery.TabIndex = 1;
             // 
             // btnClassSearch
             // 
-            btnClassSearch.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnClassSearch.Location = new Point(257, -2);
-            btnClassSearch.Margin = new Padding(3, 0, 0, 3);
+            tblClasses.SetColumnSpan(btnClassSearch, 2);
+            btnClassSearch.Dock = DockStyle.Fill;
+            btnClassSearch.Location = new Point(256, 3);
             btnClassSearch.Name = "btnClassSearch";
-            btnClassSearch.Size = new Size(197, 25);
-            btnClassSearch.TabIndex = 1;
-            btnClassSearch.Text = "Class Search";
+            btnClassSearch.Size = new Size(204, 28);
+            btnClassSearch.TabIndex = 0;
+            btnClassSearch.Text = "Student Search";
             btnClassSearch.UseVisualStyleBackColor = true;
+            // 
+            // btnAddClass
+            // 
+            btnAddClass.Dock = DockStyle.Fill;
+            btnAddClass.Location = new Point(256, 37);
+            btnAddClass.Name = "btnAddClass";
+            btnAddClass.Size = new Size(81, 28);
+            btnAddClass.TabIndex = 3;
+            btnAddClass.Text = "Add Student";
+            btnAddClass.UseVisualStyleBackColor = true;
+            // 
+            // btnDelClass
+            // 
+            btnDelClass.Dock = DockStyle.Fill;
+            btnDelClass.Location = new Point(343, 37);
+            btnDelClass.Name = "btnDelClass";
+            btnDelClass.Size = new Size(117, 28);
+            btnDelClass.TabIndex = 12;
+            btnDelClass.Text = "Remove Selected";
+            btnDelClass.UseVisualStyleBackColor = true;
+            // 
+            // pnlClassSection
+            // 
+            pnlClassSection.AutoSize = true;
+            pnlClassSection.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            pnlClassSection.Controls.Add(btnEditClass);
+            pnlClassSection.Controls.Add(lblClassResult);
+            pnlClassSection.Dock = DockStyle.Fill;
+            pnlClassSection.Location = new Point(3, 37);
+            pnlClassSection.Name = "pnlClassSection";
+            pnlClassSection.Size = new Size(247, 28);
+            pnlClassSection.TabIndex = 14;
+            // 
+            // btnEditClass
+            // 
+            btnEditClass.Dock = DockStyle.Fill;
+            btnEditClass.Location = new Point(82, 0);
+            btnEditClass.Name = "btnEditClass";
+            btnEditClass.Size = new Size(165, 28);
+            btnEditClass.TabIndex = 13;
+            btnEditClass.Text = "Class Info...";
+            btnEditClass.UseVisualStyleBackColor = true;
+            // 
+            // lblClassResult
+            // 
+            lblClassResult.AutoSize = true;
+            lblClassResult.Dock = DockStyle.Left;
+            lblClassResult.Location = new Point(0, 0);
+            lblClassResult.Margin = new Padding(3, 9, 3, 0);
+            lblClassResult.Name = "lblClassResult";
+            lblClassResult.Size = new Size(82, 15);
+            lblClassResult.TabIndex = 11;
+            lblClassResult.Text = "Search Results";
+            // 
+            // pnlBottom
+            // 
+            pnlBottom.AutoSize = true;
+            pnlBottom.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            tableLayoutPanel1.SetColumnSpan(pnlBottom, 2);
+            pnlBottom.Controls.Add(btnLogout);
+            pnlBottom.Controls.Add(prgProcessingIndicator);
+            pnlBottom.Controls.Add(btnViewUsers);
+            pnlBottom.Dock = DockStyle.Fill;
+            pnlBottom.Location = new Point(6, 230);
+            pnlBottom.Name = "pnlBottom";
+            pnlBottom.Size = new Size(932, 25);
+            pnlBottom.TabIndex = 15;
             // 
             // btnLogout
             // 
-            btnLogout.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnLogout.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             btnLogout.AutoSize = true;
-            btnLogout.Location = new Point(860, 424);
+            btnLogout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnLogout.Location = new Point(872, 0);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(60, 25);
             btnLogout.TabIndex = 1;
@@ -141,449 +339,73 @@
             // 
             // prgProcessingIndicator
             // 
-            prgProcessingIndicator.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            prgProcessingIndicator.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             prgProcessingIndicator.Enabled = false;
-            prgProcessingIndicator.Location = new Point(150, 424);
+            prgProcessingIndicator.Location = new Point(147, 0);
+            prgProcessingIndicator.Margin = new Padding(12, 3, 12, 3);
             prgProcessingIndicator.MarqueeAnimationSpeed = 50;
             prgProcessingIndicator.Name = "prgProcessingIndicator";
-            prgProcessingIndicator.Size = new Size(704, 25);
+            prgProcessingIndicator.Size = new Size(710, 25);
             prgProcessingIndicator.Step = 0;
             prgProcessingIndicator.TabIndex = 2;
             // 
-            // btnAddStudent
-            // 
-            btnAddStudent.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnAddStudent.Location = new Point(255, 29);
-            btnAddStudent.Name = "btnAddStudent";
-            btnAddStudent.Size = new Size(81, 25);
-            btnAddStudent.TabIndex = 3;
-            btnAddStudent.Text = "Add Student";
-            btnAddStudent.UseVisualStyleBackColor = true;
-            // 
-            // btnAddClass
-            // 
-            btnAddClass.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnAddClass.AutoSize = true;
-            btnAddClass.Location = new Point(257, 29);
-            btnAddClass.Name = "btnAddClass";
-            btnAddClass.Size = new Size(83, 25);
-            btnAddClass.TabIndex = 8;
-            btnAddClass.Text = "Add Class";
-            btnAddClass.UseVisualStyleBackColor = true;
-            // 
             // btnViewUsers
             // 
-            btnViewUsers.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnViewUsers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             btnViewUsers.AutoSize = true;
-            btnViewUsers.Location = new Point(12, 424);
+            btnViewUsers.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnViewUsers.Location = new Point(0, 0);
             btnViewUsers.Name = "btnViewUsers";
             btnViewUsers.Size = new Size(132, 25);
             btnViewUsers.TabIndex = 11;
             btnViewUsers.Text = "View Users/Professors";
             btnViewUsers.UseVisualStyleBackColor = true;
             // 
-            // splitContainer
-            // 
-            splitContainer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            splitContainer.BorderStyle = BorderStyle.FixedSingle;
-            splitContainer.Location = new Point(12, 12);
-            splitContainer.Name = "splitContainer";
-            // 
-            // splitContainer.Panel1
-            // 
-            splitContainer.Panel1.Controls.Add(lblStudentResult);
-            splitContainer.Panel1.Controls.Add(lstStudentResults);
-            splitContainer.Panel1.Controls.Add(grpStudentsProperties);
-            splitContainer.Panel1.Controls.Add(btnAddStudent);
-            splitContainer.Panel1.Controls.Add(btnDelStudent);
-            splitContainer.Panel1.Controls.Add(btnStudentSearch);
-            splitContainer.Panel1.Controls.Add(txtStudentQuery);
-            // 
-            // splitContainer.Panel2
-            // 
-            splitContainer.Panel2.Controls.Add(lblClassResult);
-            splitContainer.Panel2.Controls.Add(lstClassResults);
-            splitContainer.Panel2.Controls.Add(grpClassProperties);
-            splitContainer.Panel2.Controls.Add(btnAddClass);
-            splitContainer.Panel2.Controls.Add(btnDelClass);
-            splitContainer.Panel2.Controls.Add(btnClassSearch);
-            splitContainer.Panel2.Controls.Add(txtClassQuery);
-            splitContainer.Size = new Size(908, 406);
-            splitContainer.SplitterDistance = 447;
-            splitContainer.SplitterWidth = 6;
-            splitContainer.TabIndex = 12;
-            // 
-            // lblStudentResult
-            // 
-            lblStudentResult.AutoSize = true;
-            lblStudentResult.Location = new Point(3, 34);
-            lblStudentResult.Name = "lblStudentResult";
-            lblStudentResult.Size = new Size(82, 15);
-            lblStudentResult.TabIndex = 11;
-            lblStudentResult.Text = "Search Results";
-            // 
-            // lstStudentResults
-            // 
-            lstStudentResults.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lstStudentResults.FormattingEnabled = true;
-            lstStudentResults.HorizontalScrollbar = true;
-            lstStudentResults.IntegralHeight = false;
-            lstStudentResults.ItemHeight = 15;
-            lstStudentResults.Items.AddRange(new object[] { "Daniel Coffman", "Jeff Bezos", "Joe Biden", "Ronan Banton" });
-            lstStudentResults.Location = new Point(3, 60);
-            lstStudentResults.Name = "lstStudentResults";
-            lstStudentResults.SelectionMode = SelectionMode.MultiExtended;
-            lstStudentResults.Size = new Size(246, 341);
-            lstStudentResults.TabIndex = 10;
-            // 
-            // grpStudentsProperties
-            // 
-            grpStudentsProperties.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            grpStudentsProperties.Controls.Add(pnlStudentInfo);
-            grpStudentsProperties.Controls.Add(lblStudentEnrollment);
-            grpStudentsProperties.Controls.Add(clbStudentEnrollment);
-            grpStudentsProperties.Location = new Point(255, 60);
-            grpStudentsProperties.Name = "grpStudentsProperties";
-            grpStudentsProperties.Size = new Size(187, 341);
-            grpStudentsProperties.TabIndex = 4;
-            grpStudentsProperties.TabStop = false;
-            grpStudentsProperties.Text = "Student Info";
-            // 
-            // pnlStudentInfo
-            // 
-            pnlStudentInfo.AutoSize = true;
-            pnlStudentInfo.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            pnlStudentInfo.Controls.Add(numStudentCredits);
-            pnlStudentInfo.Controls.Add(lblStudentCredits);
-            pnlStudentInfo.Controls.Add(numStudentGPA);
-            pnlStudentInfo.Controls.Add(txtStudentGPA);
-            pnlStudentInfo.Controls.Add(txtStudentPhone);
-            pnlStudentInfo.Controls.Add(lblStudentPhone);
-            pnlStudentInfo.Controls.Add(txtStudentEmail);
-            pnlStudentInfo.Controls.Add(lblStudentEmail);
-            pnlStudentInfo.Controls.Add(txtStudentMajor);
-            pnlStudentInfo.Controls.Add(lblStudentMajor);
-            pnlStudentInfo.Controls.Add(dteStudentDOB);
-            pnlStudentInfo.Controls.Add(lblStudentDOB);
-            pnlStudentInfo.Controls.Add(txtStudentName);
-            pnlStudentInfo.Controls.Add(lblStudentName);
-            pnlStudentInfo.Controls.Add(numStudentID);
-            pnlStudentInfo.Controls.Add(lblStudentID);
-            pnlStudentInfo.Enabled = false;
-            pnlStudentInfo.Location = new Point(5, 15);
-            pnlStudentInfo.Name = "pnlStudentInfo";
-            pnlStudentInfo.Size = new Size(180, 202);
-            pnlStudentInfo.TabIndex = 18;
-            // 
-            // numStudentCredits
-            // 
-            numStudentCredits.DecimalPlaces = 1;
-            numStudentCredits.Location = new Point(130, 176);
-            numStudentCredits.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
-            numStudentCredits.Name = "numStudentCredits";
-            numStudentCredits.Size = new Size(47, 23);
-            numStudentCredits.TabIndex = 16;
-            // 
-            // lblStudentCredits
-            // 
-            lblStudentCredits.Location = new Point(83, 176);
-            lblStudentCredits.Margin = new Padding(3, 0, 0, 0);
-            lblStudentCredits.Name = "lblStudentCredits";
-            lblStudentCredits.Size = new Size(44, 23);
-            lblStudentCredits.TabIndex = 9;
-            lblStudentCredits.Text = "Credits";
-            lblStudentCredits.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // numStudentGPA
-            // 
-            numStudentGPA.DecimalPlaces = 2;
-            numStudentGPA.Location = new Point(34, 176);
-            numStudentGPA.Maximum = new decimal(new int[] { 4, 0, 0, 0 });
-            numStudentGPA.Name = "numStudentGPA";
-            numStudentGPA.Size = new Size(43, 23);
-            numStudentGPA.TabIndex = 15;
-            // 
-            // txtStudentGPA
-            // 
-            txtStudentGPA.Location = new Point(2, 176);
-            txtStudentGPA.Margin = new Padding(3, 0, 0, 0);
-            txtStudentGPA.Name = "txtStudentGPA";
-            txtStudentGPA.Size = new Size(29, 23);
-            txtStudentGPA.TabIndex = 8;
-            txtStudentGPA.Text = "GPA";
-            txtStudentGPA.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // txtStudentPhone
-            // 
-            txtStudentPhone.Location = new Point(46, 147);
-            txtStudentPhone.Mask = "(999) 000-0000";
-            txtStudentPhone.Name = "txtStudentPhone";
-            txtStudentPhone.Size = new Size(131, 23);
-            txtStudentPhone.TabIndex = 14;
-            // 
-            // lblStudentPhone
-            // 
-            lblStudentPhone.Location = new Point(2, 147);
-            lblStudentPhone.Margin = new Padding(3, 0, 0, 0);
-            lblStudentPhone.Name = "lblStudentPhone";
-            lblStudentPhone.Size = new Size(41, 23);
-            lblStudentPhone.TabIndex = 7;
-            lblStudentPhone.Text = "Phone";
-            lblStudentPhone.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // txtStudentEmail
-            // 
-            txtStudentEmail.Location = new Point(46, 118);
-            txtStudentEmail.Name = "txtStudentEmail";
-            txtStudentEmail.PlaceholderText = "E-mail address";
-            txtStudentEmail.Size = new Size(131, 23);
-            txtStudentEmail.TabIndex = 12;
-            // 
-            // lblStudentEmail
-            // 
-            lblStudentEmail.Location = new Point(2, 118);
-            lblStudentEmail.Margin = new Padding(3, 0, 0, 0);
-            lblStudentEmail.Name = "lblStudentEmail";
-            lblStudentEmail.Size = new Size(41, 23);
-            lblStudentEmail.TabIndex = 6;
-            lblStudentEmail.Text = "E-mail";
-            lblStudentEmail.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // txtStudentMajor
-            // 
-            txtStudentMajor.Location = new Point(43, 89);
-            txtStudentMajor.Name = "txtStudentMajor";
-            txtStudentMajor.PlaceholderText = "Major of study";
-            txtStudentMajor.Size = new Size(134, 23);
-            txtStudentMajor.TabIndex = 11;
-            // 
-            // lblStudentMajor
-            // 
-            lblStudentMajor.Location = new Point(2, 89);
-            lblStudentMajor.Margin = new Padding(3, 0, 0, 0);
-            lblStudentMajor.Name = "lblStudentMajor";
-            lblStudentMajor.Size = new Size(38, 23);
-            lblStudentMajor.TabIndex = 5;
-            lblStudentMajor.Text = "Major";
-            lblStudentMajor.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // dteStudentDOB
-            // 
-            dteStudentDOB.Format = DateTimePickerFormat.Short;
-            dteStudentDOB.Location = new Point(78, 60);
-            dteStudentDOB.Name = "dteStudentDOB";
-            dteStudentDOB.Size = new Size(99, 23);
-            dteStudentDOB.TabIndex = 2;
-            // 
-            // lblStudentDOB
-            // 
-            lblStudentDOB.Location = new Point(2, 60);
-            lblStudentDOB.Margin = new Padding(3, 0, 0, 0);
-            lblStudentDOB.Name = "lblStudentDOB";
-            lblStudentDOB.Size = new Size(73, 23);
-            lblStudentDOB.TabIndex = 4;
-            lblStudentDOB.Text = "Date of Birth";
-            lblStudentDOB.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // txtStudentName
-            // 
-            txtStudentName.Location = new Point(44, 31);
-            txtStudentName.Name = "txtStudentName";
-            txtStudentName.PlaceholderText = "Student name";
-            txtStudentName.Size = new Size(133, 23);
-            txtStudentName.TabIndex = 10;
-            // 
-            // lblStudentName
-            // 
-            lblStudentName.Location = new Point(2, 31);
-            lblStudentName.Margin = new Padding(3, 0, 0, 0);
-            lblStudentName.Name = "lblStudentName";
-            lblStudentName.Size = new Size(39, 23);
-            lblStudentName.TabIndex = 3;
-            lblStudentName.Text = "Name";
-            lblStudentName.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // numStudentID
-            // 
-            numStudentID.Location = new Point(23, 2);
-            numStudentID.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
-            numStudentID.Name = "numStudentID";
-            numStudentID.Size = new Size(154, 23);
-            numStudentID.TabIndex = 1;
-            // 
-            // lblStudentID
-            // 
-            lblStudentID.Location = new Point(2, 2);
-            lblStudentID.Margin = new Padding(3, 0, 0, 0);
-            lblStudentID.Name = "lblStudentID";
-            lblStudentID.Size = new Size(18, 23);
-            lblStudentID.TabIndex = 0;
-            lblStudentID.Text = "ID";
-            lblStudentID.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblStudentEnrollment
-            // 
-            lblStudentEnrollment.AutoSize = true;
-            lblStudentEnrollment.Location = new Point(6, 217);
-            lblStudentEnrollment.Name = "lblStudentEnrollment";
-            lblStudentEnrollment.Size = new Size(65, 15);
-            lblStudentEnrollment.TabIndex = 17;
-            lblStudentEnrollment.Text = "Enrollment";
-            // 
-            // clbStudentEnrollment
-            // 
-            clbStudentEnrollment.FormattingEnabled = true;
-            clbStudentEnrollment.IntegralHeight = false;
-            clbStudentEnrollment.Items.AddRange(new object[] { "CS 215", "CS 221", "CS 315", "CS 444" });
-            clbStudentEnrollment.Location = new Point(6, 235);
-            clbStudentEnrollment.Name = "clbStudentEnrollment";
-            clbStudentEnrollment.Size = new Size(175, 94);
-            clbStudentEnrollment.TabIndex = 0;
-            // 
-            // btnDelStudent
-            // 
-            btnDelStudent.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnDelStudent.Location = new Point(342, 29);
-            btnDelStudent.Name = "btnDelStudent";
-            btnDelStudent.Size = new Size(105, 25);
-            btnDelStudent.TabIndex = 12;
-            btnDelStudent.Text = "Remove Selected";
-            btnDelStudent.UseVisualStyleBackColor = true;
-            // 
-            // lblClassResult
-            // 
-            lblClassResult.AutoSize = true;
-            lblClassResult.Location = new Point(3, 34);
-            lblClassResult.Name = "lblClassResult";
-            lblClassResult.Size = new Size(82, 15);
-            lblClassResult.TabIndex = 13;
-            lblClassResult.Text = "Search Results";
-            // 
-            // lstClassResults
-            // 
-            lstClassResults.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lstClassResults.FormattingEnabled = true;
-            lstClassResults.HorizontalScrollbar = true;
-            lstClassResults.IntegralHeight = false;
-            lstClassResults.ItemHeight = 15;
-            lstClassResults.Items.AddRange(new object[] { "CS 215", "CS 221", "CS 315", "CS 444" });
-            lstClassResults.Location = new Point(3, 60);
-            lstClassResults.Name = "lstClassResults";
-            lstClassResults.Size = new Size(248, 341);
-            lstClassResults.TabIndex = 12;
-            // 
-            // grpClassProperties
-            // 
-            grpClassProperties.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            grpClassProperties.Controls.Add(lblClassName);
-            grpClassProperties.Controls.Add(txtClassName);
-            grpClassProperties.Controls.Add(lblClassCredits);
-            grpClassProperties.Controls.Add(numClassCredits);
-            grpClassProperties.Controls.Add(lblClassProf);
-            grpClassProperties.Controls.Add(txtClassProf);
-            grpClassProperties.Location = new Point(257, 60);
-            grpClassProperties.Name = "grpClassProperties";
-            grpClassProperties.Size = new Size(189, 341);
-            grpClassProperties.TabIndex = 9;
-            grpClassProperties.TabStop = false;
-            grpClassProperties.Text = "Class Info";
-            // 
-            // lblClassName
-            // 
-            lblClassName.Location = new Point(6, 16);
-            lblClassName.Margin = new Padding(3, 0, 0, 0);
-            lblClassName.Name = "lblClassName";
-            lblClassName.Size = new Size(39, 23);
-            lblClassName.TabIndex = 17;
-            lblClassName.Text = "Name";
-            lblClassName.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // txtClassName
-            // 
-            txtClassName.Location = new Point(48, 16);
-            txtClassName.Name = "txtClassName";
-            txtClassName.PlaceholderText = "Class name";
-            txtClassName.Size = new Size(135, 23);
-            txtClassName.TabIndex = 20;
-            // 
-            // lblClassCredits
-            // 
-            lblClassCredits.Location = new Point(6, 45);
-            lblClassCredits.Margin = new Padding(3, 0, 0, 0);
-            lblClassCredits.Name = "lblClassCredits";
-            lblClassCredits.Size = new Size(74, 24);
-            lblClassCredits.TabIndex = 19;
-            lblClassCredits.Text = "Credit Hours";
-            lblClassCredits.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // numClassCredits
-            // 
-            numClassCredits.Location = new Point(83, 45);
-            numClassCredits.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
-            numClassCredits.Name = "numClassCredits";
-            numClassCredits.Size = new Size(100, 23);
-            numClassCredits.TabIndex = 22;
-            // 
-            // lblClassProf
-            // 
-            lblClassProf.Location = new Point(6, 75);
-            lblClassProf.Margin = new Padding(3, 0, 0, 0);
-            lblClassProf.Name = "lblClassProf";
-            lblClassProf.Size = new Size(56, 23);
-            lblClassProf.TabIndex = 18;
-            lblClassProf.Text = "Professor";
-            lblClassProf.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // txtClassProf
-            // 
-            txtClassProf.Location = new Point(65, 75);
-            txtClassProf.Name = "txtClassProf";
-            txtClassProf.PlaceholderText = "Professor's username";
-            txtClassProf.Size = new Size(118, 23);
-            txtClassProf.TabIndex = 21;
-            // 
-            // btnDelClass
-            // 
-            btnDelClass.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnDelClass.AutoSize = true;
-            btnDelClass.Location = new Point(346, 29);
-            btnDelClass.Name = "btnDelClass";
-            btnDelClass.Size = new Size(107, 25);
-            btnDelClass.TabIndex = 14;
-            btnDelClass.Text = "Remove Selected";
-            btnDelClass.UseVisualStyleBackColor = true;
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(pnlStudents, 0, 0);
+            tableLayoutPanel1.Controls.Add(pnlClasses, 1, 0);
+            tableLayoutPanel1.Controls.Add(pnlBottom, 0, 1);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.Padding = new Padding(3);
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle());
+            tableLayoutPanel1.Size = new Size(944, 261);
+            tableLayoutPanel1.TabIndex = 16;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(932, 461);
-            Controls.Add(splitContainer);
-            Controls.Add(btnViewUsers);
-            Controls.Add(prgProcessingIndicator);
-            Controls.Add(btnLogout);
-            MinimumSize = new Size(400, 300);
+            ClientSize = new Size(944, 261);
+            Controls.Add(tableLayoutPanel1);
+            MinimumSize = new Size(960, 300);
             Name = "MainForm";
-            Text = "Main";
+            Text = "Student Management System";
             FormClosed += MainForm_FormClosed;
-            splitContainer.Panel1.ResumeLayout(false);
-            splitContainer.Panel1.PerformLayout();
-            splitContainer.Panel2.ResumeLayout(false);
-            splitContainer.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
-            splitContainer.ResumeLayout(false);
-            grpStudentsProperties.ResumeLayout(false);
-            grpStudentsProperties.PerformLayout();
-            pnlStudentInfo.ResumeLayout(false);
-            pnlStudentInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numStudentCredits).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numStudentGPA).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numStudentID).EndInit();
-            grpClassProperties.ResumeLayout(false);
-            grpClassProperties.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numClassCredits).EndInit();
+            tblStudents.ResumeLayout(false);
+            tblStudents.PerformLayout();
+            pnlStudentSection.ResumeLayout(false);
+            pnlStudentSection.PerformLayout();
+            pnlStudents.ResumeLayout(false);
+            pnlStudents.PerformLayout();
+            pnlClasses.ResumeLayout(false);
+            pnlClasses.PerformLayout();
+            tblClasses.ResumeLayout(false);
+            tblClasses.PerformLayout();
+            pnlClassSection.ResumeLayout(false);
+            pnlClassSection.PerformLayout();
+            pnlBottom.ResumeLayout(false);
+            pnlBottom.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -593,44 +415,26 @@
         private Button btnLogout;
         private ProgressBar prgProcessingIndicator;
         private TextBox txtStudentQuery;
+        private Button btnAddStudent;
+        private Button btnViewUsers;
+        private ListBox lstStudentResults;
+        private Button btnDelStudent;
+        private TableLayoutPanel tblStudents;
+        private Panel pnlStudents;
+        private Panel pnlClasses;
+        private ListBox lstClassResults;
+        private Panel pnlBottom;
+        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tblClasses;
         private TextBox txtClassQuery;
         private Button btnClassSearch;
-        private Button btnAddStudent;
-        private Button btnAddClass;
-        private Button btnViewUsers;
-        private SplitContainer splitContainer;
-        private GroupBox grpStudentsProperties;
-        private GroupBox grpClassProperties;
-        private ListBox lstStudentResults;
-        private Label lblStudentResult;
         private Label lblClassResult;
-        private ListBox lstClassResults;
+        private Button btnAddClass;
         private Button btnDelClass;
-        private Button btnDelStudent;
-        private Label lblStudentID;
-        private NumericUpDown numStudentID;
-        private DateTimePicker dteStudentDOB;
-        private Label lblStudentCredits;
-        private Label txtStudentGPA;
-        private Label lblStudentPhone;
-        private Label lblStudentEmail;
-        private Label lblStudentMajor;
-        private Label lblStudentDOB;
-        private Label lblStudentName;
-        private TextBox txtStudentName;
-        private TextBox txtStudentMajor;
-        private NumericUpDown numStudentGPA;
-        private MaskedTextBox txtStudentPhone;
-        private TextBox txtStudentEmail;
-        private NumericUpDown numStudentCredits;
-        private Label lblStudentEnrollment;
-        private CheckedListBox clbStudentEnrollment;
-        private Label lblClassName;
-        private TextBox txtClassName;
-        private Label lblClassProf;
-        private TextBox txtClassProf;
-        private Label lblClassCredits;
-        private NumericUpDown numClassCredits;
-        private Panel pnlStudentInfo;
+        private Button btnEditClass;
+        private Panel pnlStudentSection;
+        private Button btnEditStudent;
+        private Label btnStudentResult;
+        private Panel pnlClassSection;
     }
 }

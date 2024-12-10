@@ -108,23 +108,25 @@
             // btnEditStudent
             // 
             btnEditStudent.Dock = DockStyle.Fill;
+            btnEditStudent.Enabled = false;
             btnEditStudent.Location = new Point(82, 0);
             btnEditStudent.Name = "btnEditStudent";
             btnEditStudent.Size = new Size(165, 28);
             btnEditStudent.TabIndex = 13;
             btnEditStudent.Text = "Student Info...";
             btnEditStudent.UseVisualStyleBackColor = true;
+            btnEditStudent.Click += btnEditStudent_Click;
             // 
             // btnStudentResult
             // 
-            btnStudentResult.AutoSize = true;
             btnStudentResult.Dock = DockStyle.Left;
             btnStudentResult.Location = new Point(0, 0);
             btnStudentResult.Margin = new Padding(3, 9, 3, 0);
             btnStudentResult.Name = "btnStudentResult";
-            btnStudentResult.Size = new Size(82, 15);
+            btnStudentResult.Size = new Size(82, 28);
             btnStudentResult.TabIndex = 11;
             btnStudentResult.Text = "Search Results";
+            btnStudentResult.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // txtStudentQuery
             // 
@@ -132,7 +134,7 @@
             txtStudentQuery.Location = new Point(3, 5);
             txtStudentQuery.Margin = new Padding(3, 5, 3, 3);
             txtStudentQuery.Name = "txtStudentQuery";
-            txtStudentQuery.PlaceholderText = "Search for a student's name or ID...";
+            txtStudentQuery.PlaceholderText = "Search for a student's name...";
             txtStudentQuery.Size = new Size(247, 23);
             txtStudentQuery.TabIndex = 1;
             // 
@@ -146,6 +148,7 @@
             btnStudentSearch.TabIndex = 0;
             btnStudentSearch.Text = "Student Search";
             btnStudentSearch.UseVisualStyleBackColor = true;
+            btnStudentSearch.Click += btnStudentSearch_Click;
             // 
             // btnAddStudent
             // 
@@ -156,16 +159,19 @@
             btnAddStudent.TabIndex = 3;
             btnAddStudent.Text = "Add Student";
             btnAddStudent.UseVisualStyleBackColor = true;
+            btnAddStudent.Click += btnAddStudent_Click;
             // 
             // btnDelStudent
             // 
             btnDelStudent.Dock = DockStyle.Fill;
+            btnDelStudent.Enabled = false;
             btnDelStudent.Location = new Point(343, 37);
             btnDelStudent.Name = "btnDelStudent";
             btnDelStudent.Size = new Size(117, 28);
             btnDelStudent.TabIndex = 12;
             btnDelStudent.Text = "Remove Selected";
             btnDelStudent.UseVisualStyleBackColor = true;
+            btnDelStudent.Click += btnDelStudent_Click;
             // 
             // pnlStudents
             // 
@@ -187,9 +193,9 @@
             lstStudentResults.Items.AddRange(new object[] { "Daniel Coffman", "Jeff Bezos", "Joe Biden", "Ronan Banton" });
             lstStudentResults.Location = new Point(0, 68);
             lstStudentResults.Name = "lstStudentResults";
-            lstStudentResults.SelectionMode = SelectionMode.MultiExtended;
             lstStudentResults.Size = new Size(463, 150);
             lstStudentResults.TabIndex = 10;
+            lstStudentResults.SelectedIndexChanged += lstStudentResults_SelectedIndexChanged;
             // 
             // pnlClasses
             // 
@@ -213,6 +219,7 @@
             lstClassResults.Name = "lstClassResults";
             lstClassResults.Size = new Size(463, 150);
             lstClassResults.TabIndex = 12;
+            lstClassResults.SelectedIndexChanged += lstClassResults_SelectedIndexChanged;
             // 
             // tblClasses
             // 
@@ -242,7 +249,7 @@
             txtClassQuery.Location = new Point(3, 5);
             txtClassQuery.Margin = new Padding(3, 5, 3, 3);
             txtClassQuery.Name = "txtClassQuery";
-            txtClassQuery.PlaceholderText = "Search for a student's name or ID...";
+            txtClassQuery.PlaceholderText = "Search for a course's name...";
             txtClassQuery.Size = new Size(247, 23);
             txtClassQuery.TabIndex = 1;
             // 
@@ -254,8 +261,9 @@
             btnClassSearch.Name = "btnClassSearch";
             btnClassSearch.Size = new Size(204, 28);
             btnClassSearch.TabIndex = 0;
-            btnClassSearch.Text = "Student Search";
+            btnClassSearch.Text = "Course Search";
             btnClassSearch.UseVisualStyleBackColor = true;
+            btnClassSearch.Click += btnClassSearch_Click;
             // 
             // btnAddClass
             // 
@@ -264,18 +272,21 @@
             btnAddClass.Name = "btnAddClass";
             btnAddClass.Size = new Size(81, 28);
             btnAddClass.TabIndex = 3;
-            btnAddClass.Text = "Add Student";
+            btnAddClass.Text = "Add Course";
             btnAddClass.UseVisualStyleBackColor = true;
+            btnAddClass.Click += btnAddClass_Click;
             // 
             // btnDelClass
             // 
             btnDelClass.Dock = DockStyle.Fill;
+            btnDelClass.Enabled = false;
             btnDelClass.Location = new Point(343, 37);
             btnDelClass.Name = "btnDelClass";
             btnDelClass.Size = new Size(117, 28);
             btnDelClass.TabIndex = 12;
             btnDelClass.Text = "Remove Selected";
             btnDelClass.UseVisualStyleBackColor = true;
+            btnDelClass.Click += btnDelClass_Click;
             // 
             // pnlClassSection
             // 
@@ -292,23 +303,25 @@
             // btnEditClass
             // 
             btnEditClass.Dock = DockStyle.Fill;
+            btnEditClass.Enabled = false;
             btnEditClass.Location = new Point(82, 0);
             btnEditClass.Name = "btnEditClass";
             btnEditClass.Size = new Size(165, 28);
             btnEditClass.TabIndex = 13;
-            btnEditClass.Text = "Class Info...";
+            btnEditClass.Text = "Course Info...";
             btnEditClass.UseVisualStyleBackColor = true;
+            btnEditClass.Click += btnEditClass_Click;
             // 
             // lblClassResult
             // 
-            lblClassResult.AutoSize = true;
             lblClassResult.Dock = DockStyle.Left;
             lblClassResult.Location = new Point(0, 0);
             lblClassResult.Margin = new Padding(3, 9, 3, 0);
             lblClassResult.Name = "lblClassResult";
-            lblClassResult.Size = new Size(82, 15);
+            lblClassResult.Size = new Size(82, 28);
             lblClassResult.TabIndex = 11;
             lblClassResult.Text = "Search Results";
+            lblClassResult.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // pnlBottom
             // 
@@ -360,6 +373,7 @@
             btnViewUsers.TabIndex = 11;
             btnViewUsers.Text = "View Users/Professors";
             btnViewUsers.UseVisualStyleBackColor = true;
+            btnViewUsers.Click += btnViewUsers_Click;
             // 
             // tableLayoutPanel1
             // 
@@ -392,7 +406,6 @@
             tblStudents.ResumeLayout(false);
             tblStudents.PerformLayout();
             pnlStudentSection.ResumeLayout(false);
-            pnlStudentSection.PerformLayout();
             pnlStudents.ResumeLayout(false);
             pnlStudents.PerformLayout();
             pnlClasses.ResumeLayout(false);
@@ -400,7 +413,6 @@
             tblClasses.ResumeLayout(false);
             tblClasses.PerformLayout();
             pnlClassSection.ResumeLayout(false);
-            pnlClassSection.PerformLayout();
             pnlBottom.ResumeLayout(false);
             pnlBottom.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);

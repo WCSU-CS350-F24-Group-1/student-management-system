@@ -29,12 +29,11 @@
         private void InitializeComponent()
         {
             Label lblStudentCredits;
-            Label txtStudentGPA;
+            Label lblStudentGPA;
             Label lblStudentPhone;
             Label lblStudentEmail;
             Label lblStudentMajor;
             Label lblStudentDOB;
-            Label lblStudentEnrollment;
             TableLayoutPanel tblStudentInfo;
             Label lblStudentName;
             TableLayoutPanel tblBottomButtons;
@@ -42,19 +41,19 @@
             dteStudentDOB = new DateTimePicker();
             txtStudentMajor = new TextBox();
             txtStudentEmail = new TextBox();
+            txtStudentPhone = new TextBox();
             numStudentGPA = new NumericUpDown();
             numStudentCredits = new NumericUpDown();
             btnConfirm = new Button();
             btnCancel = new Button();
+            lblStudentEnrollment = new Label();
             clbStudentEnrollment = new CheckedListBox();
-            txtStudentPhone = new TextBox();
             lblStudentCredits = new Label();
-            txtStudentGPA = new Label();
+            lblStudentGPA = new Label();
             lblStudentPhone = new Label();
             lblStudentEmail = new Label();
             lblStudentMajor = new Label();
             lblStudentDOB = new Label();
-            lblStudentEnrollment = new Label();
             tblStudentInfo = new TableLayoutPanel();
             lblStudentName = new Label();
             tblBottomButtons = new TableLayoutPanel();
@@ -76,17 +75,17 @@
             lblStudentCredits.Text = "Credits";
             lblStudentCredits.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // txtStudentGPA
+            // lblStudentGPA
             // 
-            txtStudentGPA.AutoSize = true;
-            txtStudentGPA.Dock = DockStyle.Top;
-            txtStudentGPA.Location = new Point(3, 146);
-            txtStudentGPA.Margin = new Padding(3, 6, 0, 0);
-            txtStudentGPA.Name = "txtStudentGPA";
-            txtStudentGPA.Size = new Size(73, 15);
-            txtStudentGPA.TabIndex = 8;
-            txtStudentGPA.Text = "GPA";
-            txtStudentGPA.TextAlign = ContentAlignment.MiddleLeft;
+            lblStudentGPA.AutoSize = true;
+            lblStudentGPA.Dock = DockStyle.Top;
+            lblStudentGPA.Location = new Point(3, 146);
+            lblStudentGPA.Margin = new Padding(3, 6, 0, 0);
+            lblStudentGPA.Name = "lblStudentGPA";
+            lblStudentGPA.Size = new Size(73, 15);
+            lblStudentGPA.TabIndex = 8;
+            lblStudentGPA.Text = "GPA";
+            lblStudentGPA.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblStudentPhone
             // 
@@ -136,17 +135,6 @@
             lblStudentDOB.Text = "Date of Birth";
             lblStudentDOB.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // lblStudentEnrollment
-            // 
-            lblStudentEnrollment.AutoSize = true;
-            lblStudentEnrollment.Dock = DockStyle.Top;
-            lblStudentEnrollment.Location = new Point(0, 173);
-            lblStudentEnrollment.Margin = new Padding(3, 3, 3, 0);
-            lblStudentEnrollment.Name = "lblStudentEnrollment";
-            lblStudentEnrollment.Size = new Size(65, 15);
-            lblStudentEnrollment.TabIndex = 17;
-            lblStudentEnrollment.Text = "Enrollment";
-            // 
             // tblStudentInfo
             // 
             tblStudentInfo.ColumnCount = 4;
@@ -164,7 +152,7 @@
             tblStudentInfo.Controls.Add(txtStudentEmail, 1, 3);
             tblStudentInfo.Controls.Add(lblStudentPhone, 0, 4);
             tblStudentInfo.Controls.Add(txtStudentPhone, 1, 4);
-            tblStudentInfo.Controls.Add(txtStudentGPA, 0, 5);
+            tblStudentInfo.Controls.Add(lblStudentGPA, 0, 5);
             tblStudentInfo.Controls.Add(numStudentGPA, 1, 5);
             tblStudentInfo.Controls.Add(lblStudentCredits, 2, 5);
             tblStudentInfo.Controls.Add(numStudentCredits, 3, 5);
@@ -199,10 +187,12 @@
             tblStudentInfo.SetColumnSpan(txtStudentName, 3);
             txtStudentName.Dock = DockStyle.Fill;
             txtStudentName.Location = new Point(79, 3);
+            txtStudentName.MaxLength = 100;
             txtStudentName.Name = "txtStudentName";
             txtStudentName.PlaceholderText = "Student name";
             txtStudentName.Size = new Size(218, 23);
             txtStudentName.TabIndex = 10;
+            txtStudentName.TextChanged += ValidateConfirmAllowed;
             // 
             // dteStudentDOB
             // 
@@ -213,26 +203,43 @@
             dteStudentDOB.Name = "dteStudentDOB";
             dteStudentDOB.Size = new Size(218, 23);
             dteStudentDOB.TabIndex = 2;
+            dteStudentDOB.ValueChanged += ValidateConfirmAllowed;
             // 
             // txtStudentMajor
             // 
             tblStudentInfo.SetColumnSpan(txtStudentMajor, 3);
             txtStudentMajor.Dock = DockStyle.Fill;
             txtStudentMajor.Location = new Point(79, 59);
+            txtStudentMajor.MaxLength = 50;
             txtStudentMajor.Name = "txtStudentMajor";
             txtStudentMajor.PlaceholderText = "Major of study";
             txtStudentMajor.Size = new Size(218, 23);
             txtStudentMajor.TabIndex = 11;
+            txtStudentMajor.TextChanged += ValidateConfirmAllowed;
             // 
             // txtStudentEmail
             // 
             tblStudentInfo.SetColumnSpan(txtStudentEmail, 3);
             txtStudentEmail.Dock = DockStyle.Fill;
             txtStudentEmail.Location = new Point(79, 87);
+            txtStudentEmail.MaxLength = 100;
             txtStudentEmail.Name = "txtStudentEmail";
             txtStudentEmail.PlaceholderText = "E-mail address";
             txtStudentEmail.Size = new Size(218, 23);
             txtStudentEmail.TabIndex = 12;
+            txtStudentEmail.TextChanged += ValidateConfirmAllowed;
+            // 
+            // txtStudentPhone
+            // 
+            tblStudentInfo.SetColumnSpan(txtStudentPhone, 3);
+            txtStudentPhone.Dock = DockStyle.Fill;
+            txtStudentPhone.Location = new Point(79, 115);
+            txtStudentPhone.MaxLength = 20;
+            txtStudentPhone.Name = "txtStudentPhone";
+            txtStudentPhone.PlaceholderText = "Phone number";
+            txtStudentPhone.Size = new Size(218, 23);
+            txtStudentPhone.TabIndex = 17;
+            txtStudentPhone.TextChanged += ValidateConfirmAllowed;
             // 
             // numStudentGPA
             // 
@@ -243,6 +250,7 @@
             numStudentGPA.Name = "numStudentGPA";
             numStudentGPA.Size = new Size(82, 23);
             numStudentGPA.TabIndex = 15;
+            numStudentGPA.ValueChanged += ValidateConfirmAllowed;
             // 
             // numStudentCredits
             // 
@@ -252,6 +260,7 @@
             numStudentCredits.Name = "numStudentCredits";
             numStudentCredits.Size = new Size(83, 23);
             numStudentCredits.TabIndex = 16;
+            numStudentCredits.ValueChanged += ValidateConfirmAllowed;
             // 
             // tblBottomButtons
             // 
@@ -278,6 +287,7 @@
             btnConfirm.TabIndex = 0;
             btnConfirm.Text = "Add Student";
             btnConfirm.UseVisualStyleBackColor = true;
+            btnConfirm.Click += btnConfirm_Click;
             // 
             // btnCancel
             // 
@@ -288,6 +298,18 @@
             btnCancel.TabIndex = 1;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
+            // 
+            // lblStudentEnrollment
+            // 
+            lblStudentEnrollment.AutoSize = true;
+            lblStudentEnrollment.Dock = DockStyle.Top;
+            lblStudentEnrollment.Location = new Point(0, 173);
+            lblStudentEnrollment.Margin = new Padding(3, 3, 3, 0);
+            lblStudentEnrollment.Name = "lblStudentEnrollment";
+            lblStudentEnrollment.Size = new Size(65, 15);
+            lblStudentEnrollment.TabIndex = 17;
+            lblStudentEnrollment.Text = "Enrollment";
             // 
             // clbStudentEnrollment
             // 
@@ -297,28 +319,18 @@
             clbStudentEnrollment.Items.AddRange(new object[] { "CS 215", "CS 221", "CS 315", "CS 444" });
             clbStudentEnrollment.Location = new Point(0, 188);
             clbStudentEnrollment.Name = "clbStudentEnrollment";
-            clbStudentEnrollment.Size = new Size(300, 173);
+            clbStudentEnrollment.Size = new Size(300, 144);
             clbStudentEnrollment.TabIndex = 0;
-            // 
-            // txtStudentPhone
-            // 
-            tblStudentInfo.SetColumnSpan(txtStudentPhone, 3);
-            txtStudentPhone.Dock = DockStyle.Fill;
-            txtStudentPhone.Location = new Point(79, 115);
-            txtStudentPhone.Name = "txtStudentPhone";
-            txtStudentPhone.PlaceholderText = "Phone number";
-            txtStudentPhone.Size = new Size(218, 23);
-            txtStudentPhone.TabIndex = 17;
             // 
             // StudentInfo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(300, 361);
-            Controls.Add(tblBottomButtons);
             Controls.Add(clbStudentEnrollment);
             Controls.Add(lblStudentEnrollment);
             Controls.Add(tblStudentInfo);
+            Controls.Add(tblBottomButtons);
             MinimumSize = new Size(300, 400);
             Name = "StudentInfo";
             Text = "Student Info";
@@ -335,7 +347,7 @@
         private NumericUpDown numStudentCredits;
         private Label lblStudentCredits;
         private NumericUpDown numStudentGPA;
-        private Label txtStudentGPA;
+        private Label lblStudentGPA;
         private Label lblStudentPhone;
         private TextBox txtStudentEmail;
         private Label lblStudentEmail;

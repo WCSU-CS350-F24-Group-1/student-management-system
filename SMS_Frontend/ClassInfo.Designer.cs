@@ -71,10 +71,12 @@
             // 
             txtClassProf.Dock = DockStyle.Fill;
             txtClassProf.Location = new Point(83, 63);
+            txtClassProf.MaxLength = 50;
             txtClassProf.Name = "txtClassProf";
             txtClassProf.PlaceholderText = "Professor's username";
             txtClassProf.Size = new Size(198, 23);
             txtClassProf.TabIndex = 21;
+            txtClassProf.TextChanged += ValidateConfirmAllowed;
             // 
             // lblClassProf
             // 
@@ -95,6 +97,7 @@
             numClassCredits.Name = "numClassCredits";
             numClassCredits.Size = new Size(198, 23);
             numClassCredits.TabIndex = 22;
+            numClassCredits.ValueChanged += ValidateConfirmAllowed;
             // 
             // lblClassCredits
             // 
@@ -111,10 +114,12 @@
             // 
             txtClassName.Dock = DockStyle.Fill;
             txtClassName.Location = new Point(83, 3);
+            txtClassName.MaxLength = 100;
             txtClassName.Name = "txtClassName";
             txtClassName.PlaceholderText = "Class name";
             txtClassName.Size = new Size(198, 23);
             txtClassName.TabIndex = 20;
+            txtClassName.TextChanged += ValidateConfirmAllowed;
             // 
             // lblClassName
             // 
@@ -152,6 +157,7 @@
             btnConfirm.TabIndex = 0;
             btnConfirm.Text = "Add Course";
             btnConfirm.UseVisualStyleBackColor = true;
+            btnConfirm.Click += btnConfirm_Click;
             // 
             // btnCancel
             // 
@@ -162,6 +168,7 @@
             btnCancel.TabIndex = 1;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // ClassInfo
             // 
@@ -174,7 +181,7 @@
             MaximumSize = new Size(4096, 160);
             MinimumSize = new Size(300, 160);
             Name = "ClassInfo";
-            Text = "ClassInfo";
+            Text = "Course Info";
             tblClassProperties.ResumeLayout(false);
             tblClassProperties.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numClassCredits).EndInit();
